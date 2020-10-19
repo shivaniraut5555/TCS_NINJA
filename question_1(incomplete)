@@ -1,0 +1,62 @@
+#include <stdio.h>
+#define MAX 9999
+void fibo(int n)
+{
+  int i,fib[20],a=0,b=0;
+  for(i=0;i<n;i++)
+  {
+    if(i==0 || i == 1)
+    fib[i]=1;
+    else
+    {
+      a=fib[i-2];
+      b=fib[i-1];
+      fib[i]=a+b;
+    }
+    
+  }
+  printf("%d",fib[n-1]);
+}
+/*not complete prime function */
+void prime(int n)
+{
+  int i, j, flag, count =0,prim[MAX],k=0;
+    //as prime numbers in given question start from 2
+    for (i=2; i<=MAX; i++)
+    {
+        flag = 0;
+        //to check if divisible apart from 1 & itself
+        //loop starts from 2 to ignore divisibilty by 1 & ends before the number itself
+        for (j=2; j<i; j++)
+        {
+            if(i%j == 0)
+            {
+                //number is not prime
+                flag = 1;
+                break;
+            }
+        }
+        //is prime
+        if (flag == 0){
+            //if found the nth prime number
+            if(++count == n)
+            {
+                prim[k]=i;
+                k++;
+                break;
+            }
+        }
+    }
+    for(i=0;i<n;i++)
+    printf("%d  ",prim[i]);
+}
+
+int main(void) 
+{
+  int i,index;
+  scanf("%d",&index);
+  if(index%2==0)
+  prime((index/2)+2);
+  else
+  fibo((index/2)+1); 
+}
